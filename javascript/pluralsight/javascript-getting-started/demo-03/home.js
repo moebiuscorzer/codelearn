@@ -1,3 +1,5 @@
+"use strict";
+
 let price = 12,
   taxRate = 0.07;
 const productName = "Hiking Boots";

@@ -12,7 +12,7 @@ let logRepo = {
       if (err) {
         reject(err);
       } else {
-        resolve(true);
+        resolve(true); // this seems to be written to the console?
       }
     });
   },

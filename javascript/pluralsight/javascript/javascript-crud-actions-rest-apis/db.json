@@ -7,6 +7,37 @@
       "color": "orange",
       "id": "0124081a-4daa-425a-bb40-d5c016893fe3",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla facilisi nullam vehicula ipsum a arcu cursus vitae congue. Risus quis varius quam quisque. Quis risus sed vulputate odio. Ultrices eros in cursus turpis. Est velit egestas dui id ornare arcu. Sem fringilla ut morbi tincidunt augue interdum velit euismod. Dictumst quisque sagittis purus sit amet volutpat. Sed libero enim sed faucibus turpis in eu. Dui vivamus arcu felis bibendum ut tristique et egestas."
+    },
+    {
+      "name": "Rugged Hikjing Boots",
+      "price": 59.99,
+      "quantity": 25,
+      "id": "999b3bd3-eb58-4396-8a70-4b4bf034b291"
+    },
+    {
+      "name": "Rugged Hikjing Boots",
+      "price": 59.99,
+      "quantity": 25,
+      "id": "a0f48463-ca09-44d5-a323-b09aebbb6cf3"
+    },
+    {
+      "name": "Rugged Hiking Boots PROMO",
+      "price": 59.99,
+      "quantity": 25,
+      "id": "0ea89e39-27a4-4f1c-a3fd-ef8544f24582",
+      "description": "incredible"
+    },
+    {
+      "name": "Rugged Hiking Boots",
+      "price": 59.99,
+      "quantity": 25,
+      "id": "4acb7066-3816-4e18-995e-844633d17537"
+    },
+    {
+      "name": "Jack",
+      "price": 59.99,
+      "quantity": 25,
+      "id": "e0f384c9-eb77-4edc-946a-2508557a3792"
     }
   ]
 }

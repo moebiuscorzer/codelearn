@@ -1,3 +1,37 @@
+document.getElementById("search").onclick = function () {
+  let textValue = document.getElementById("search-terms").value;
+  let priceValue = document.getElementById("price").value;
+  let colorValue = document.getElementById("color").value;
+
+  if (priceValue === "" && colorValue === "") {
+    axios.get(`/api/products/search?keywords=${textValue}`).then(showResults);
+  } else {
+    let rootQuery = `/api/products/detailSearch?`;
+    let priceQuery = "";
+    let colorQuery = "";
+
+    if (textValue) {
+      rootQuery += `name[val]=${textValue}`;
+    }
+
+    if (priceValue) {
+      if (textValue) priceQuery = "&";
+
+      priceQuery += `price[op]=lt&price[val]=${priceValue}`;
+    }
+
+    if (colorValue) {
+      if (textValue || priceValue) priceQuery = "&";
+
+      priceQuery += `color[op]=lt&color[val]=${colorValue}`;
+    }
+
+    const query = `${rootQuery}${priceQuery}${colorQuery}`;
+
+    axios.get(query).then(showResults);
+  }
+};
+
 function showResults({ data }) {
   document.querySelector("h2").className = "hidden";
 

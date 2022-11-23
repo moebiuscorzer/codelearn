@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+const qs = require("qs");
 
 module.exports = function (db) {
   router
@@ -16,10 +17,46 @@ module.exports = function (db) {
     const keywords = req.query.keywords;
     const result = db.get("products").filter((_) => {
       const fullText = _.description + _.name + _.color;
+      //return keywords.every((_) => fullText.indexOf(_) !== -1);
       return fullText.indexOf(keywords) !== -1;
     });
 
     res.send(result);
+  });
+
+  router.route("/products/detailSearch").get((req, res) => {
+    const query = qs.parse(req.query);
+    const results = db.get("products").filter((_) => {
+      return Object.keys(query).reduce((found, key) => {
+        const obj = query[key];
+        //found = found && _[key] == obj.val;
+
+        switch (obj.op) {
+          case "lt":
+            found = found && _[key] < obj.val;
+            break;
+          case "gt":
+            found = found && _[key] > obj.val;
+            break;
+          case "le":
+            found = found && _[key] <= obj.val;
+            break;
+          case "ge":
+            found = found && _[key] >= obj.val;
+            break;
+          case "eq":
+            found = found && _[key] == obj.val;
+            break;
+          default:
+            //found = found && _[key].indexOf(obj.val) !== -1;
+            found = found && _[key] == obj.val;
+            break;
+        }
+        return found;
+      }, true);
+    });
+
+    res.send(results);
   });
 
   router

@@ -38,6 +38,12 @@
       "price": 59.99,
       "quantity": 25,
       "id": "e0f384c9-eb77-4edc-946a-2508557a3792"
+    },
+    {
+      "name": "Jack",
+      "price": 59.99,
+      "quantity": 25,
+      "id": "7d2d1d4a-3c2a-4cf6-b210-b9e293f93b88"
     }
   ]
 }

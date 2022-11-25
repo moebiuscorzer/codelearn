@@ -51,6 +51,13 @@
       "price": 59.99,
       "quantity": 25,
       "id": "17f320a1-c2d2-48a5-bd76-00131069a39c"
+    },
+    {
+      "name": "Jackson",
+      "price": 59.99,
+      "quantity": 25,
+      "color": "red",
+      "id": "1f4c7690-1b2e-4e56-9cb8-68fe6f65e32c"
     }
   ]
 }

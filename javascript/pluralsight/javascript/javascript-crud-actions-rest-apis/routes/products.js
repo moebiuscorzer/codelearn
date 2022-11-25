@@ -9,16 +9,72 @@ module.exports = function (db) {
       res.send(db.get("products").value());
     })
     .post((req, res) => {
+      /*
       const newProduct = req.body;
       res.send(db.get("products").insert(newProduct).write());
+      */
+
+      const newProduct = req.body;
+
+      const errors = [];
+
+      if (!newProduct.name) {
+        errors.push({
+          field: "name",
+          error: "required",
+          message: "Name is required",
+        });
+      }
+
+      if (newProduct.price && isNaN(Number(newProduct.price))) {
+        errors.push({
+          field: "price",
+          error: "type",
+          message: "Price must be a number",
+        });
+      }
+
+      if (newProduct.name > 25) {
+        errors.push({
+          field: "name",
+          error: "length",
+          message: "Name cannot be longer than 25 characters",
+        });
+      }
+
+      const allowedColors = [
+        "red",
+        "blue",
+        "orange",
+        "black",
+        "brown",
+        "",
+        null,
+        undefined,
+      ];
+
+      if (!allowedColors.some((_) => _ === newProduct.color)) {
+        errors.push({
+          field: "color",
+          error: "allowedValue",
+          message:
+            "Must be one of the following colors: red, blue, orange, black, brown",
+        });
+      }
+
+      if (errors.length) {
+        res.status(422).send(errors);
+      } else {
+        res.send(db.get("products").insert(newProduct).write());
+      }
     });
 
   router.route("/products/search").get((req, res) => {
-    const keywords = req.query.keywords;
+    const keywords = req.query.keywords.split(" ");
     const result = db.get("products").filter((_) => {
       const fullText = _.description + _.name + _.color;
-      //return keywords.every((_) => fullText.indexOf(_) !== -1);
-      return fullText.indexOf(keywords) !== -1;
+      return keywords.every((_) => fullText.indexOf(_) !== -1);
+      //return fullText.indexOf(keywords) !== -1;
     });
 
     res.send(result);
